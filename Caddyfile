@@ -2,8 +2,7 @@
     admin off
 }
 
-experttechllc.com, www.experttechllc.com {
-    bind :{$PORT}
+:{$PORT} {
     root * .
     file_server
     try_files {path}.html {path}
