@@ -1,19 +1,10 @@
 {
-    # Global options
     admin off
 }
 
-# Handle both domains
 experttechllc.com, www.experttechllc.com {
-    # Listen on the port Railway provides
     bind :{$PORT}
-    
-    # Set the root directory to current
     root * .
-    
-    # Enable static file serving
     file_server
-    
-    # Optional: Clean URLs (e.g., /case-healthcare instead of /case-healthcare.html)
     try_files {path}.html {path}
 }
