@@ -42,6 +42,23 @@ Undo: `./sony-tv-tune.sh -t 192.168.1.50 restore`
 | Swap launcher: Projectivy Launcher (Play Store), set as default in its settings | Play Store | stock Google TV home is the main source of lag |
 | Keep >2 GB storage free | Settings > Storage | Bravia slows hard near full flash |
 
+## Casting, AirPlay, and optical to B&W
+
+Slow cast/AirPlay is mostly the TV cold-booting from deep standby, not bloat.
+
+| Fix | Where (menu names vary by model year) |
+|---|---|
+| Remote start ON (lets cast/AirPlay wake the TV over the network) | Settings > Network & Internet > Remote start |
+| Quick Start ON (2016-2019 Android TV models) | Settings > System Settings > General Set-up > Quick Start |
+| Ethernet, or 5 GHz Wi-Fi with a DHCP reservation for the TV | router |
+| Digital audio out = PCM, Digital audio out volume = max | Settings > Display & Sound > Audio output |
+| Speakers = Audio system (mutes TV speakers, drives optical) | same menu |
+| On the B&W: set input to Optical, disable its auto-standby if it has one | B&W app |
+
+Optical carries no CEC, so the speaker cannot follow TV power. If your B&W has HDMI ARC/eARC (Panorama 3 does), use that instead and turn on BRAVIA Sync / CEC.
+
+The script protects YouTube TV, Chromecast built-in (`mediashell`), AirPlay, inputs, launcher, and Play Services even if they end up in `packages.txt`.
+
 ## Notes
 
 - Package names vary by model and firmware year. The script skips anything not installed. Verify against `installed-packages.txt` after `audit` before adding to the list.

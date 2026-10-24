@@ -11,6 +11,9 @@ ANIM_SCALE="0.5"
 DRY_RUN=0
 AGGRESSIVE=0
 TV_ADDR=""
+# Never removed, even if listed: live TV (YouTube TV), Chromecast built-in, AirPlay,
+# tuner/inputs, launcher, Play Services. Matched as substrings of the package name.
+PROTECTED=(youtube.tvunplugged mediashell airplay com.sony.dtv.tvx tvinput tvlauncher launcherx com.google.android.gms)
 
 usage() {
   cat <<USAGE
@@ -64,6 +67,7 @@ cmd_audit() {
   installed_packages > "$out"
   echo "wrote $(wc -l < "$out") packages to $out"
   grep -E '^com\.sony\.' "$out" | sed 's/^/  sony: /' || true
+  grep -iE 'airplay|mediashell|tvunplugged' "$out" | sed 's/^/  keep: /' || true
 }
 
 wanted_packages() {
@@ -80,10 +84,23 @@ wanted_packages() {
   done < "$PKG_FILE"
 }
 
+is_protected() {
+  local p
+  [[ "$1" == "com.google.android.leanbacklauncher" ]] && return 0
+  for p in "${PROTECTED[@]}"; do
+    [[ "$1" == *"$p"* ]] && return 0
+  done
+  return 1
+}
+
 cmd_debloat() {
   local installed failures=0 pkg
   installed="$(installed_packages)"
   while IFS= read -r pkg; do
+    if is_protected "$pkg"; then
+      echo "keep   $pkg (protected)"
+      continue
+    fi
     if ! grep -qxF "$pkg" <<<"$installed"; then
       echo "skip   $pkg (not installed)"
       continue
