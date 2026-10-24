@@ -1,0 +1,29 @@
+# Packages to remove for the current user (pm uninstall -k --user 0).
+# Reversible: ./sony-tv-tune.sh restore
+# Packages not installed on your model are skipped. Run `./sony-tv-tune.sh audit` first
+# and edit this list against what your TV actually has.
+# Lines starting with # are ignored. Prefix a line with "?" to mark it optional
+# (only removed with --aggressive).
+
+# Sony promos, demo, discovery rails
+com.sony.dtv.promos
+com.sony.dtv.sonyselect
+com.sony.dtv.discovery
+com.sony.dtv.demosystemsupport
+com.sony.dtv.photosharingplus
+
+# Google recommendations, feedback, screensaver extras
+com.google.android.tvrecommendations
+com.google.android.leanbacklauncher.recommendations
+com.google.android.feedback
+com.google.android.backdrop
+com.android.dreams.basic
+com.android.printspooler
+
+# Bundled media apps you can reinstall from Play if wanted
+com.google.android.play.games
+com.google.android.videos
+com.google.android.youtube.tvmusic
+
+# Optional: breaks voice search / Assistant button
+?com.google.android.katniss
