@@ -5,6 +5,7 @@
 ## Run in 3 commands
 
 ```bash
+./install.sh                                  # installs adb (brew on macOS, apt/dnf on Linux)
 ./sony-tv-tune.sh -t 192.168.1.50 audit       # see what's installed, edit packages.txt
 ./sony-tv-tune.sh -t 192.168.1.50 -n all      # dry run
 ./sony-tv-tune.sh -t 192.168.1.50 all         # debloat + speed
